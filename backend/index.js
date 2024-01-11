@@ -30,9 +30,7 @@ const connectDB=async()=>{
 dotenv.config()
 app.use(express.json())
 app.use("/images",express.static(path.join(__dirname,"/images")))
-app.use(cors({origin:["https://blog-app1-beta.vercel.app/"],
-             methods:["GET","POST","PUT","DELETE"],
-             credentials:true}))
+app.use(cors());
 app.get("/",(req,res)=>{
     res.json("Hello World");
 })
