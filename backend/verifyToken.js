@@ -1,22 +1,20 @@
+const User=require("./models/User");
 const jwt=require('jsonwebtoken')
 
-const verifyToken=(req,res,next)=>{
+const verifyToken=async(req,res,next)=>{
     const token=req.cookies.token
     // console.log(token)
     if(!token){
         return res.status(401).json("You are not authenticated!")
     }
-    jwt.verify(token,process.env.SECRET,async (err,data)=>{
-        if(err){
-            return res.status(403).json("Token is not valid!")
-        }
-        
-        req.userId=data._id
-       
-        // console.log("passed")
-        
-        next()
-    })
+    const decode = jwt.verify(token,process.env.SECRET)
+    // console.log("decoded data ",decode)
+
+    req.userId = await User.findById(decode._id)
+
+   
+    // console.log(req.user);
+    next();
 }
 
 module.exports=verifyToken
