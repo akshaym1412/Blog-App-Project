@@ -34,7 +34,7 @@ app.use(cors({origin:["https://blog-app1-beta.vercel.app"],
              methods:["GET","POST","PUT","DELETE"],
              credentials:true}))
 app.get("/",(req,res)=>{
-    res.json("Hello");
+    res.json("Hello World");
 })
 app.use(cookieParser())
 app.use("/api/auth",authRoute)
