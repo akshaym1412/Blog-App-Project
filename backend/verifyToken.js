@@ -1,7 +1,7 @@
 const jwt=require('jsonwebtoken')
 
 const verifyToken=async(req,res,next)=>{
-    const token=req.cookies.access_token;
+    const {token}=req.cookies;
     // console.log(token)
     if(!token){
         return res.status(401).json("You are not authenticated!")
