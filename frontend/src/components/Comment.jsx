@@ -12,7 +12,7 @@ const Comment = ({c,post}) => {
   const deleteComment=async(id)=>{
     try{
       await axios.delete(URL+"/api/comments/"+id,{withCredentials:true})
-      console.log(post)
+      console.log(post._id)
       navigate("/")
       
     }
