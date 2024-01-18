@@ -13,7 +13,7 @@ const Comment = ({c,post}) => {
     try{
       await axios.delete(URL+"/api/comments/"+id,{withCredentials:true})
       naviagte(`/posts/post/:${id}`)
-      // window.location.reload(true)
+      window.location.reload(true)
     }
     catch(err){
       console.log(err)
