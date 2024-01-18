@@ -1,4 +1,3 @@
-const User=require("./models/User");
 const jwt=require('jsonwebtoken')
 
 const verifyToken=async(req,res,next)=>{
@@ -7,14 +6,14 @@ const verifyToken=async(req,res,next)=>{
     if(!token){
         return res.status(401).json("You are not authenticated!")
     }
-    const decode = jwt.verify(token,process.env.SECRET)
-    // console.log("decoded data ",decode)
-
-    req.userId = await User.findById(decode._id)
-
-   
-    // console.log(req.user);
+    jwt.verify(token,process.env.SECRET,(err, user) => {
+    if (err) {
+      return res.status(401).json("You are not authenticated!")
+         }
+    req.user = user;
     next();
-}
+    });
+};
 
 module.exports=verifyToken
+
