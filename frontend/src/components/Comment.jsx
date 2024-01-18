@@ -12,8 +12,9 @@ const Comment = ({c,post}) => {
   const deleteComment=async(id)=>{
     try{
       await axios.delete(URL+"/api/comments/"+id,{withCredentials:true})
-      navigate(`/posts/post/:${postId}`)
       window.location.reload(true)
+      navigate(`/posts/post/:${postId}`)
+      
     }
     catch(err){
       console.log(err)
