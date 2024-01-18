@@ -47,10 +47,10 @@ const PostDetails = () => {
 
   }
 
-  // useEffect(()=>{
-  //   fetchPost()
+  useEffect(()=>{
+    fetchPost()
 
-  // },[postId])
+  },[postId])
 
   const fetchPostComments=async()=>{
     setLoader(true)
@@ -77,10 +77,10 @@ const PostDetails = () => {
       const res=await axios.post(URL+"/api/comments/create",
       {comment:comment,author:user.username,postId:postId,userId:user._id},
       {withCredentials:true})
-      
-      fetchPostComments()
+      fetchPost();
+      fetchPostComments();
       // setComment("")
-      window.location.reload(true)
+      // window.location.reload(true)
 
     }
     catch(err){
